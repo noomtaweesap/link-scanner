@@ -42,12 +42,24 @@ def invalid_urls(urllist: List[str]) -> List[str]:
     """Validate the urls in urllist and return a new list containing
     the invalid or unreachable urls.
     """
-    pass
+    invalid_urls_list = []
+    for url in urllist:
+        if not is_valid_url(url):
+            invalid_urls_list.append(url)
+    return invalid_urls_list
 
 
 if __name__ == "__main__":
     browser: WebDriver = webdriver.Chrome(r'C:\Users\DELL\Desktop\desktop\CODE\link_scanner\chromedriver.exe')
     url = sys.argv[1]
-    link_list = get_links(url)
+    links_list = get_links(url)
+    bad_links_list = invalid_urls(links_list)
+    print('This is a good link.')
+    for url in links_list:
+        print(url)
+    print('This is a bad link.')
+    for url in bad_links_list:
+        print(url)
+    browser.quit()
 
 
