@@ -2,6 +2,7 @@ from typing import List
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium import webdriver
 import sys
+import urllib.error, urllib.request
 
 
 def get_links(url):
@@ -30,7 +31,11 @@ def is_valid_url(url: str):
     Returns:
         True if the URL is OK, False otherwise.
     """
-    pass
+    try:
+        urllib.request.urlopen(url)
+        return True
+    except urllib.error.HTTPError:
+        return False
 
 
 def invalid_urls(urllist: List[str]) -> List[str]:
@@ -44,3 +49,5 @@ if __name__ == "__main__":
     browser: WebDriver = webdriver.Chrome(r'C:\Users\DELL\Desktop\desktop\CODE\link_scanner\chromedriver.exe')
     url = sys.argv[1]
     link_list = get_links(url)
+
+
