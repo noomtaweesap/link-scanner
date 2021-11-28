@@ -54,10 +54,14 @@ if __name__ == "__main__":
     url = sys.argv[1]
     links_list = get_links(url)
     bad_links_list = invalid_urls(links_list)
-    print('This is a good link.')
+
+    # get good link
+    print('This link is a good link.')
     for url in links_list:
         print(url)
-    print('This is a bad link.')
+
+    # get bad links
+    print('This is link is a bad link.')
     for url in bad_links_list:
         print(url)
     browser.quit()
